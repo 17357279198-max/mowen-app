@@ -323,6 +323,10 @@ def _build_answer_response(role: dict, answer_data: dict, engine: str) -> dict:
 
 @app.get("/")
 async def index():
+    # 如果前端已构建，返回 SPA 页面
+    _fe = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+    if _fe.exists():
+        return FileResponse(str(_fe / "index.html"))
     return {
         "name": "墨问 · 古籍智慧对话引擎 v2.0",
         "version": "2.0.0",
@@ -596,4 +600,5 @@ if _FRONTEND_DIST.exists():
 # ============================================================
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    _port = int(os.environ.get("PORT", "8000"))
+    uvicorn.run("main:app", host="0.0.0.0", port=_port, reload=True)
