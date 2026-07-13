@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #F5F0EB;
+  --color-accent: #C53D43;
+  --color-accent-dark: #A03035;
+  --color-ink: #2C2C2C;
+  --color-muted: #7C9EB2;
+  --color-card: #FFFCF7;
+  --color-sub: #F1E7D8;
+  --color-border: #E0D4C8;
+  --color-gold: #B89968;
+  --color-jade: #6B8E7F;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ============ 字体系统 ============ */
+
+.font-serif-cn {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+}
+
+/* 原文展示专用 —— 大字号、宽字距、衬线体 */
+.text-classical {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+}
+
+/* ============ 滚动条 ============ */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============ 水墨纹理系统 ============ */
+
+/* 主背景纹理 —— 多层水墨晕染 */
+.ink-texture {
+  background-image:
+    radial-gradient(ellipse at 10% 15%, rgba(124, 158, 178, 0.08) 0%, transparent 35%),
+    radial-gradient(ellipse at 90% 85%, rgba(197, 61, 67, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(184, 153, 104, 0.03) 0%, transparent 50%);
+}
+
+/* 深层水墨纹理 —— 用于卡片背景 */
+.ink-paper {
+  background-color: #FFFCF7;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(44, 44, 44, 0.02) 0%, transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(197, 61, 67, 0.02) 0%, transparent 30%);
+}
+
+/* 宣纸纹理 —— 细微的纸纹效果 */
+.rice-paper {
+  background-color: #FFFCF7;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(44, 44, 44, 0.008) 2px,
+      rgba(44, 44, 44, 0.008) 4px
+    );
+}
+
+/* 旧纸纹理 —— 用于白话层 */
+.old-paper {
+  background-color: #F1E7D8;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(184, 153, 104, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(124, 158, 178, 0.04) 0%, transparent 40%);
+}
+
+/* ============ 印章系统 ============ */
+
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(197, 61, 67, 0.25);
+}
+
+/* 方形印章 —— 用于装饰 */
+.seal-square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #FFFCF7;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-weight: bold;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+  box-shadow: 0 2px 6px rgba(197, 61, 67, 0.2);
+  position: relative;
+}
+
+/* 印章边框装饰 */
+.seal-border {
+  border: 1.5px solid var(--color-accent);
+  border-radius: 6px;
+  position: relative;
+}
+
+.seal-border::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 0.5px solid rgba(197, 61, 67, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ============ 装饰性元素 ============ */
+
+/* 水墨晕染装饰圆 */
+.ink-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.06;
+}
+
+/* 左侧装饰线 —— 用于区块标题 */
+.title-decor::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* 卡片渐入光效 */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  pointer-events: none;
+}
+
+/* 竖排文字装饰 */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.2em;
+}
+
+/* ============ 交互效果 ============ */
+
+/* 卡片悬浮效果 */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* 按钮按压效果 */
+.press-down {
+  transition: transform 0.15s ease;
+}
+
+.press-down:active {
+  transform: scale(0.97);
+}
+
+/* ============ 文字渐变 ============ */
+
+.text-gradient-ink {
+  background: linear-gradient(135deg, #2C2C2C 0%, #3D3D3D 50%, #7C9EB2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #B89968 0%, #D4BC8A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============ 装饰性分隔线 ============ */
+
+.ink-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ink-divider::before,
+.ink-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+/* ============ 声波动画（圣贤开口时） ============ */
+
+@keyframes wave {
+  0%, 100% { height: 6px; }
+  50% { height: 16px; }
+}
+
+.voice-wave span {
+  display: inline-block;
+  width: 3px;
+  height: 6px;
+  margin: 0 1px;
+  background: currentColor;
+  border-radius: 2px;
+  animation: wave 0.8s ease-in-out infinite;
+}
+
+.voice-wave span:nth-child(1) { animation-delay: 0s; }
+.voice-wave span:nth-child(2) { animation-delay: 0.15s; }
+.voice-wave span:nth-child(3) { animation-delay: 0.3s; }
+.voice-wave span:nth-child(4) { animation-delay: 0.45s; }
+.voice-wave span:nth-child(5) { animation-delay: 0.6s; }
+
+/* ============ 渐入序列动画 ============ */
+
+.stagger-1 { animation: fadeInUp 0.5s ease-out 0.05s both; }
+.stagger-2 { animation: fadeInUp 0.5s ease-out 0.15s both; }
+.stagger-3 { animation: fadeInUp 0.5s ease-out 0.25s both; }
+.stagger-4 { animation: fadeInUp 0.5s ease-out 0.35s both; }
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
