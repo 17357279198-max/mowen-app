@@ -43,7 +43,7 @@ LLM_PROVIDERS = {
     "doubao": {
         "name": "豆包",
         "base_url": "https://ark.cn-beijing.volces.com/api/v3",
-        "model": "ep-2025xxxxxxxxxxx",  # 替换为你的推理接入点ID
+        "model": os.environ.get("DOUBAO_MODEL_ID", "ep-2025xxxxxxxxxxx"),  # 优先从环境变量读取，否则使用占位符
         "api_key_env": "DOUBAO_API_KEY",
         "free": True,
         "free_quota": "每日200万Tokens（每日刷新，永久免费）",
